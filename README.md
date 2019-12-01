@@ -1,1 +1,9 @@
-# Budgety
+# Project Budgety
+**Self learning project from Udemy.com taught by Jonas Schmedtmann**
+Main focus of this project is to learn more advanced JavaScript (ES2015+) knowledge from the project budgety.
+
+Jonas Schemedtmann provides the starter project code and the final version of the project. I will build the project one step by one based on the starter code. Hopefully, ended the project before the end of 2019.
+
+## Project Snapshot
+![image info](./Project-Snapshot.png)
+
