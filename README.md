@@ -14,6 +14,3 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 - Add click event listener for input button
 - Add keypress event listern to the main document self
 
-![Project Snapshot](./Project-Snapshot.png)
-![GitHub set up](https://help.github.com/assets/images/site/set-up-git.gif)
-
