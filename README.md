@@ -8,3 +8,7 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 ## Project Snapshot
 ![image info](./Project-Snapshot.png)
 
+## Update History
+- Abstract the query selectors to one private object
+- Add click event listener for input button
+- Add keypress event listern to the main document self
