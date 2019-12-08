@@ -9,6 +9,9 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 ![Project Snapshot](./Project-Snapshot.png)
 
 ## Update History
+12.08.2019
+- Update the clearFields function to clean up the input area.
+
 12.03.2019
 - Add addItem method to budget controller
 - Add addItemList method to insert adjacent HTML into DOM
