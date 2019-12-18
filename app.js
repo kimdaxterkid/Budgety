@@ -12,9 +12,13 @@ var budgetController = (() => {
         this.value = value;
     };
 
-    var allExpenses = [];
-    var allIncomes = [];
-    var totalExpenses = 0;
+    var calculateTotal = (type) => {
+        var sum = 0;
+        data.allItems[type].forEach((cur) => {
+            sum += cur.value;
+        });
+        data.totals[type] = sum;
+    };
 
     var data = {
         allItems: {
@@ -24,7 +28,9 @@ var budgetController = (() => {
         totals: {
             exp: 0,
             inc: 0
-        }
+        },
+        budget: 0,
+        percentage: -1
     };
 
     return {
@@ -45,6 +51,30 @@ var budgetController = (() => {
             // push the new created item into related data list
             data.allItems[type].push(newItem);
             return newItem;
+        },
+        calculateBudget: () => {
+            // calculate the total income and expense
+            calculateTotal('inc');
+            calculateTotal('exp');
+
+            // calculate the budget: income - expense
+            data.budget = data.totals.inc - data.totals.exp;
+
+            // calculate the percentage of income that we spent
+            if (data.totals.inc > 0) {
+                data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+            } else {
+                data.percentage = -1;
+            }
+
+        },
+        getBudget: () => {
+            return {
+                budget: data.budget,
+                totalInc: data.totals.inc,
+                totalExp: data.totals.exp,
+                percentage: data.percentage
+            }
         },
         testing: () => {
             console.log(data);
@@ -122,9 +152,15 @@ var mainController = (function (budgetCtrl, UICtrl) {
 
     var updateBudget = function () {
         // 1. calculate the budget
+        budgetCtrl.calculateBudget();
+
         // 2. return the budget
+        var budget = budgetCtrl.getBudget();
+
         // 3. display the budget on the UI
+        console.log(budget);
     }
+
     var ctrlAddItem = () => {
         var input, newItem;
         // 1. get filled input data

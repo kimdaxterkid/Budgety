@@ -9,6 +9,10 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 ![Project Snapshot](./Project-Snapshot.png)
 
 ## Update History
+12.18.2019
+- Update the UpdateBudget function in budget controller
+- Deal with the case when only has the expense item for percentage
+
 12.08.2019
 - Update the clearFields function to clean up the input area
 - Fix the bug that income and expense will not add empty fields
