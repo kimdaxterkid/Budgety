@@ -10,8 +10,11 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 
 ## Update History
 12.18.2019
-- Update the UpdateBudget function in budget controller
-- Deal with the case when only has the expense item for percentage
+- Update the updateBudget function in budget controller
+- Update the displayBudge function in the UI controller
+- Deal with the case when only has expense items in displaying
+- Update the init function in main controller for UI part
+- Update the project snapshot
 
 12.08.2019
 - Update the clearFields function to clean up the input area
