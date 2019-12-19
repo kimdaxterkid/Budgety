@@ -9,6 +9,10 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 ![Project Snapshot](./Project-Snapshot.png)
 
 ## Update History
+12.19.2019
+- Add delete item function to main controller
+- Update all the related actions for deleting item
+
 12.18.2019
 - Update the updateBudget function in budget controller
 - Update the displayBudge function in the UI controller
