@@ -6,14 +6,14 @@ var budgetController = (() => {
         this.value = value;
         this.percentage = -1;
     };
-    Expense.prototype.calcPercentage = (totalIncome) => {
+    Expense.prototype.calcPercentage = function (totalIncome) {
         if (totalIncome > 0) {
             this.percentage = Math.round((this.value / totalIncome) * 100);
         } else {
             this.percentage = -1;
         }
     };
-    expense.prototype.getPercentage = () => {
+    Expense.prototype.getPercentage = function () {
         return this.percentage;
     };
 
@@ -129,8 +129,8 @@ var UIController = (() => {
         incomeLabel: '.budget__income--value',
         expensesLabel: '.budget__expenses--value',
         percentageLabel: '.budget__expenses--percentage',
-        container: '.container'
-
+        container: '.container',
+        expensesPercLabel: '.item__percentage'
     };
     return {
         getDOMstrings: () => {
@@ -177,6 +177,23 @@ var UIController = (() => {
                 document.querySelector(DOMstrings.percentageLabel).textContent = "---";
             }
         },
+        displayPercentages: (percentages) => {
+            var fields = document.querySelectorAll(DOMstrings.expensesPercLabel);
+            var nodeListForEach = (list, callback) => {
+                for (var i = 0; i < list.length; i++) {
+                    callback(list[i], i);
+                }
+            };
+
+            nodeListForEach(fields, (current, index) => {
+                if (percentages[index] > 0) {
+                    current.textContent = percentages[index] + '%';
+                } else {
+                    current.textContent = '---';
+                }
+
+            });
+        },
         clearFields: function () {
             var fields, fieldsArr;
             fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
@@ -221,6 +238,7 @@ var mainController = (function (budgetCtrl, UICtrl) {
         // 2. read percentages from the budget controller
         var percentages = budgetCtrl.getPercentages();
         // 3. update the UI with the new percentages
+        UICtrl.displayPercentages(percentages);
     };
 
     var ctrlAddItem = () => {

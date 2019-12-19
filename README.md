@@ -13,6 +13,9 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 - Add delete item event listener to main controller
 - Add deleteItem function to budget controller
 - Add deleteListItem function to UI controller
+- Add Expense percentage attribute to its prototype
+- Add single expense item percentage calcualte and get functions to budget controller
+- Add single expense item percentage display function to UI controller 
 
 12.18.2019
 - Update the updateBudget function in budget controller
