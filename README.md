@@ -11,7 +11,7 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 ## Update History
 12.19.2019
 - Add delete item function to main controller
-- Update all the related actions for deleting item
+- Add delete item function to budget controller
 
 12.18.2019
 - Update the updateBudget function in budget controller
