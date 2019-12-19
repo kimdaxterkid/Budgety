@@ -140,6 +140,10 @@ var UIController = (() => {
             // insert HTML to DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
         },
+        deleteListItem: (selectorID) => {
+            var element = document.getElementById(selectorID);
+            element.parentNode.removeChild(element)
+        },
         displayBudget: (obj) => {
             document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
             document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
@@ -215,7 +219,9 @@ var mainController = (function (budgetCtrl, UICtrl) {
             // 1. delete item from data structure
             budgetCtrl.deleteItem(type, ID);
             // 2. delete item from UI
+            UICtrl.deleteListItem(itemID);
             // 3. update budget
+            updateBudget();
         }
     };
 
