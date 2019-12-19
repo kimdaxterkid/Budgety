@@ -4,6 +4,17 @@ var budgetController = (() => {
         this.id = id;
         this.description = description;
         this.value = value;
+        this.percentage = -1;
+    };
+    Expense.prototype.calcPercentage = (totalIncome) => {
+        if (totalIncome > 0) {
+            this.percentage = Math.round((this.value / totalIncome) * 100);
+        } else {
+            this.percentage = -1;
+        }
+    };
+    expense.prototype.getPercentage = () => {
+        return this.percentage;
     };
 
     var Income = function (id, description, value) {
@@ -77,6 +88,17 @@ var budgetController = (() => {
                 data.percentage = -1;
             }
 
+        },
+        calculatePercentages: () => {
+            data.allItems.exp.forEach((cur) => {
+                cur.calcPercentage(data.totals.inc);
+            });
+        },
+        getPercentages: () => {
+            var allPerc = data.allItems.exp.map((cur) => {
+                return cur.getPercentage();
+            });
+            return allPerc;
         },
         getBudget: () => {
             return {
@@ -191,7 +213,15 @@ var mainController = (function (budgetCtrl, UICtrl) {
 
         // 3. display the budget on the UI
         UICtrl.displayBudget(budget);
-    }
+    };
+
+    var updatePercentages = () => {
+        // 1. update percentage
+        budgetCtrl.calculatePercentages();
+        // 2. read percentages from the budget controller
+        var percentages = budgetCtrl.getPercentages();
+        // 3. update the UI with the new percentages
+    };
 
     var ctrlAddItem = () => {
         var input, newItem;
@@ -206,6 +236,8 @@ var mainController = (function (budgetCtrl, UICtrl) {
             UICtrl.clearFields();
             // 5. calculate and update budget
             updateBudget();
+            // 6. update percentages
+            updatePercentages();
         }
     };
 
@@ -222,6 +254,8 @@ var mainController = (function (budgetCtrl, UICtrl) {
             UICtrl.deleteListItem(itemID);
             // 3. update budget
             updateBudget();
+            // 4. update percentages
+            updatePercentages();
         }
     };
 
