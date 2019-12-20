@@ -143,6 +143,11 @@ var UIController = (() => {
         }
         return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
     };
+    var nodeListForEach = (list, callback) => {
+        for (var i = 0; i < list.length; i++) {
+            callback(list[i], i);
+        }
+    };
 
     return {
         getDOMstrings: () => {
@@ -193,11 +198,6 @@ var UIController = (() => {
         },
         displayPercentages: (percentages) => {
             var fields = document.querySelectorAll(DOMstrings.expensesPercLabel);
-            var nodeListForEach = (list, callback) => {
-                for (var i = 0; i < list.length; i++) {
-                    callback(list[i], i);
-                }
-            };
 
             nodeListForEach(fields, (current, index) => {
                 if (percentages[index] > 0) {
@@ -205,7 +205,6 @@ var UIController = (() => {
                 } else {
                     current.textContent = '---';
                 }
-
             });
         },
         displayMonth: () => {
@@ -215,6 +214,18 @@ var UIController = (() => {
             month = now.getMonth();
             year = now.getFullYear();
             document.querySelector(DOMstrings.dateLabel).textContent = months[month] + '. ' + year;
+        },
+        changedType: () => {
+            var fields = document.querySelectorAll(
+                DOMstrings.inputType + ',' +
+                DOMstrings.inputDescription + ',' +
+                DOMstrings.inputValue
+            );
+            nodeListForEach(fields, function (cur) {
+                cur.classList.toggle('red-focus');
+            });
+            document.querySelector(DOMstrings.inputBtn).classList.toggle('red');
+
         },
         clearFields: function () {
             var fields, fieldsArr;
@@ -241,6 +252,7 @@ var mainController = (function (budgetCtrl, UICtrl) {
             }
         });
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
+        document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changedType);
     };
 
     var updateBudget = function () {

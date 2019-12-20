@@ -6,12 +6,14 @@ Main focus of this project is to learn more advanced JavaScript (ES2015+) knowle
 Jonas Schemedtmann provides the starter project code and the final version of the project. I will build the project one step by one based on the starter code. Hopefully, ended the project before the end of 2019.
 
 ## Project Snapshot
-![Project Snapshot](./Project-Snapshot.png)
+![Project Snapshot](./Project-Snapshot.gif)
 
-## Update History
+## Update History (Project finished on 12.20.2019)
 12.20.2019
 - Update item display format
 - Update time label in UI based on current Date
+- Update the input indicator color for different type
+- Update project snapshot to gif version
 
 12.19.2019
 - Add delete item event listener to main controller
