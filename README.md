@@ -11,6 +11,7 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 ## Update History
 12.20.2019
 - Update item display format
+- Update time label in UI based on current Date
 
 12.19.2019
 - Add delete item event listener to main controller
