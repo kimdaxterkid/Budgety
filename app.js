@@ -132,6 +132,17 @@ var UIController = (() => {
         container: '.container',
         expensesPercLabel: '.item__percentage'
     };
+    var formatNumber = (num, type) => {
+        var int, dec;
+        num = Math.abs(num).toFixed(2);
+        int = (num.split('.'))[0];
+        dec = (num.split('.'))[1];
+        if (int.length > 3) {
+            int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
+        }
+        return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
+    };
+
     return {
         getDOMstrings: () => {
             return DOMstrings
@@ -157,7 +168,7 @@ var UIController = (() => {
             // replace the placeholder with actual data
             newHTML = html.replace('%id%', obj.id);
             newHTML = newHTML.replace('%description%', obj.description);
-            newHTML = newHTML.replace('%value%', obj.value);
+            newHTML = newHTML.replace('%value%', formatNumber(obj.value, type));
 
             // insert HTML to DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
@@ -167,9 +178,11 @@ var UIController = (() => {
             element.parentNode.removeChild(element)
         },
         displayBudget: (obj) => {
-            document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
-            document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
-            document.querySelector(DOMstrings.expensesLabel).textContent = obj.totalExp;
+            var type;
+            obj.budget > 0 ? type = 'inc' : type = 'exp';
+            document.querySelector(DOMstrings.budgetLabel).textContent = formatNumber(obj.budget, type);
+            document.querySelector(DOMstrings.incomeLabel).textContent = formatNumber(obj.totalInc, 'inc');
+            document.querySelector(DOMstrings.expensesLabel).textContent = formatNumber(obj.totalExp, 'exp');
 
             if (obj.percentage > 0) {
                 document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentage + '%';

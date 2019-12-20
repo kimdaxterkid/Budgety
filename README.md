@@ -9,6 +9,9 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 ![Project Snapshot](./Project-Snapshot.png)
 
 ## Update History
+12.20.2019
+- Update item display format
+
 12.19.2019
 - Add delete item event listener to main controller
 - Add deleteItem function to budget controller
