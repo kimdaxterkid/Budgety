@@ -9,6 +9,10 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 ![Project Snapshot](./Project-Snapshot.gif)
 
 ## Update History (Project finished on 12.20.2019)
+12.21.2019
+- Fix ES6/ES2015 errors
+- Code clean up
+
 12.20.2019
 - Update item display format
 - Update time label in UI based on current Date
