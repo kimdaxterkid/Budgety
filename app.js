@@ -224,7 +224,7 @@ let UIController = (() => {
             document.querySelector(DOMstrings.inputBtn).classList.toggle('red');
 
         },
-        clearFields: function () {
+        clearFields: () => {
             let fields, fieldsArr;
             fields = document.querySelectorAll(`${DOMstrings.inputDescription},${DOMstrings.inputValue}`);
             fieldsArr = Array.prototype.slice.call(fields);
