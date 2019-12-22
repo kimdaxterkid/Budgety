@@ -139,9 +139,9 @@ let UIController = (() => {
         int = (num.split('.'))[0];
         dec = (num.split('.'))[1];
         if (int.length > 3) {
-            int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
+            int = `${int.substr(0, int.length - 3)},${int.substr(int.length - 3, 3)}`;
         }
-        return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
+        return `${type === 'exp' ? '-' : '+'} ${int}.${dec}`
     };
     let nodeListForEach = (list, callback) => {
         for (let i = 0; i < list.length; i++) {
@@ -212,13 +212,11 @@ let UIController = (() => {
             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             const month = now.getMonth();
             const year = now.getFullYear();
-            document.querySelector(DOMstrings.dateLabel).textContent = months[month] + '. ' + year;
+            document.querySelector(DOMstrings.dateLabel).textContent = `${months[month]}. ${year}`;
         },
         changedType: () => {
             let fields = document.querySelectorAll(
-                DOMstrings.inputType + ',' +
-                DOMstrings.inputDescription + ',' +
-                DOMstrings.inputValue
+                `${DOMstrings.inputType},${DOMstrings.inputDescription},${DOMstrings.inputValue}`
             );
             nodeListForEach(fields, function (cur) {
                 cur.classList.toggle('red-focus');
@@ -228,7 +226,7 @@ let UIController = (() => {
         },
         clearFields: function () {
             let fields, fieldsArr;
-            fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
+            fields = document.querySelectorAll(`${DOMstrings.inputDescription},${DOMstrings.inputValue}`);
             fieldsArr = Array.prototype.slice.call(fields);
 
             fieldsArr.forEach(function (current, index, array) {
