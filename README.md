@@ -9,6 +9,9 @@ Jonas Schemedtmann provides the starter project code and the final version of th
 ![Project Snapshot](./Project-Snapshot.gif)
 
 ## Update History (Project finished on 12.20.2019)
+12.22.2019
+- Update ES6 string template literal
+
 12.21.2019
 - Fix ES6/ES2015 errors
 - Code clean up
